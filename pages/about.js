@@ -1,8 +1,8 @@
-import NavBar from "@components/NavBar";
+import Head from "@components/Head";
 export default function Potato() {
   return (
     <div>
-      <NavBar />
+      <h1>Abouts</h1>
     </div>
   );
 }
