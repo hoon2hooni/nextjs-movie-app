@@ -1,14 +1,21 @@
 import { stringify } from "query-string";
-
 import { useState, useEffect } from "react";
+
+const BASE_URL = "https://api.themoviedb.org/3";
+const path = "/movie/popular";
+
+const queryString = stringify({
+  api_key: process.env.NEXT_PUBLIC_API_KEY,
+  language: "en-US",
+});
+
+const getPopularMoviesEndPoint = `${BASE_URL}${path}?${queryString}`;
 
 export default function Home() {
   const [movies, setMovies] = useState([]);
-  const BASE_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1`;
-
   useEffect(() => {
     (async () => {
-      const response = await fetch(BASE_URL);
+      const response = await fetch(getPopularMoviesEndPoint);
       const { results = [] } = await response.json();
       setMovies(results);
     })();
