@@ -1,10 +1,6 @@
 .container {
   display: grid;
-  grid-template:
-    repeat(auto-fit, minmax(33%, auto))
-    / repeat(auto-fit, minmax(33%, auto));
-  grid-auto-flow: dense;
-  align-content: space-between;
+  grid-template-columns: repeat(3, minmax(33%, auto));
   row-gap: 10px;
   column-gap: 30px;
 }
