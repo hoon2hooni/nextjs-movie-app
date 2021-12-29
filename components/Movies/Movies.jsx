@@ -1,23 +1,9 @@
-import { useEffect, useState } from "react";
 import styles from "./Movies.module.css";
 
-export default function Movies() {
-  const [movies, setMovies] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const response = await fetch("/api/movies");
-      const { results = [] } = await response.json();
-      setMovies(results);
-    })();
-  }, []);
-
-  if (movies.length === 0) {
-    return <h1>is Loading</h1>;
-  }
-
+export default function Movies({ results }) {
   return (
     <div className={styles.container}>
-      {movies.map(({ adult, title, vote_average }) => (
+      {results?.map(({ adult, title, vote_average }) => (
         <div className={styles.item}>
           <img src={""} />
           <div>
