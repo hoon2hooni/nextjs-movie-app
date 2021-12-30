@@ -1,6 +1,8 @@
 const BASE_URL = "https://api.themoviedb.org/3";
-const path = "/movie/popular";
-const getPopularMoviesEndPoint = `${BASE_URL}${path}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
+const popularPath = "/movie/popular";
+const aMovieDetailPath = "/movie/:id";
+const getPopularMoviesEndPoint = (path) =>
+  `${BASE_URL}${path}?api_key=${process.env.NEXT_PUBLIC_API_KEY}`;
 
 module.exports = {
   reactStrictMode: true,
@@ -17,7 +19,11 @@ module.exports = {
     return [
       {
         source: "/api/movies",
-        destination: getPopularMoviesEndPoint,
+        destination: getPopularMoviesEndPoint(popularPath),
+      },
+      {
+        source: "/api/movies/:id",
+        destination: getPopularMoviesEndPoint(aMovieDetailPath),
       },
     ];
   },
