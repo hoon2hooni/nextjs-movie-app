@@ -3,10 +3,7 @@
  * you can put any dynamic routing from making file name [variable]
  */
 
-import { useRouter } from "next/router";
-
 export default function Detail({ params }) {
-  const router = useRouter();
   const [title, id] = params || [];
   return (
     <>
@@ -16,8 +13,7 @@ export default function Detail({ params }) {
   );
 }
 
-export function getSeverSideProps({ params: { params } }) {
-  console.log(params);
+export function getServerSideProps({ params: { params } }) {
   return {
     props: {
       params,
