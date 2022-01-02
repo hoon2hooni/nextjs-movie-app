@@ -1,19 +1,20 @@
+import { useRouter } from "next/router";
 import styles from "./Movies.module.css";
+
 import Link from "next/link";
 
-// const router = useRouter();
-// const onClick = (id) => {
-//   router.push(`movies/${id}`);
-// };
-
 export default function Movies({ results }) {
+  const router = useRouter();
+  const onClick = (id, title) => {
+    router.push(`movies/${title}/${id}`);
+  };
   return (
     <div className={styles.container}>
-      {results?.map(({ adult, title, vote_average, id }) => (
+      {results?.map(({ adult, title, vote_average, original_title, id }) => (
         <div className={styles.item} key={id}>
           <img src={""} />
           <div>
-            <Link href={`movies/${id}`}>
+            <Link href={`movies/${original_title}/${id}`}>
               <a>
                 <h1>{title}</h1>
               </a>
